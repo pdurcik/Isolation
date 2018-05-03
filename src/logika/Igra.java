@@ -6,50 +6,42 @@ import java.util.Random;
 
 public class Igra {
 	
-	Random rand = new Random();
-	
-	
 	// Velikost igralne plošèe
 	public static final int N = 7;
 	
-	// Atributi
-	
+	// Atributi	
 	private Polje[][] plosca;
 	private Igralec naPotezi;
 	private Polozaj polozajBeli;
 	private Polozaj polozajCrni;
 	
-
-	
 	// Nova igra v zaèetni poziciji, ki je izbrana nakljuèno. Na potezi je BELI.
 	
 	public Igra() {
+		Random rand = new Random();
+		
 		plosca = new Polje[N][N];
 		
-		polozajBeli = new Polozaj(Igralec.BELI.toString());
-		polozajCrni = new Polozaj(Igralec.CRNI.toString());
-
 		for (int i = 0; i < N; i++) {
-			for (int j = 0; j<N; i++) {
+			for (int j = 0; j < N; j++) {
 				plosca[i][j] = Polje.AKTIVNO;
 			}
 		}
-		//Zacetni položaj belega igralca je izbran nakljuèno
-		//polje na katerem je figura je tudi neaktivno
+		// Zacetni položaj belega igralca je izbran nakljuèno.
+		// Polje na katerem je figura je tudi neaktivno.
 		int  x1 = rand.nextInt(N);
 		int  y1 = rand.nextInt(N);
-		polozajBeli.setX(x1);
-		polozajBeli.setY(y1);
+		polozajBeli = new Polozaj(x1, y1);// nov polozaj z imenom belega igralca
 		plosca[x1][y1] = Polje.NEAKTIVNO;
 		
 		// Zaæetni položaj èrnega igralca je izbran nakljuèno
-		// in ni isti kot zaèetni položaj belega igralca
+		// in ni isti kot zaèetni položaj belega igralca.
+		// Polje na katerem je figura je tudi neaktivno.
 		while (true) {
 			int  x2 = rand.nextInt(N);
 			int  y2 = rand.nextInt(N);
 			if (plosca[x2][y2] == Polje.AKTIVNO) {
-				polozajCrni.setX(x2);
-				polozajCrni.setY(y2);
+				polozajCrni = new Polozaj(x2, y2);// nov polozaj z imenom crnega igralca
 				plosca[x2][y2] = Polje.NEAKTIVNO;
 				break;
 			}
@@ -58,26 +50,24 @@ public class Igra {
 	}
 	
 	// Preveri, èe je poteza veljavna	
-	public boolean veljavnaPoteza(Poteza poteza) {
+	public boolean veljavnoPolje(Poteza poteza) {
 		int x = poteza.getX();
 		int y = poteza.getY();
-		if (0 <= x && x <= N && 0 <= y && y <= N && plosca[x][y] == Polje.AKTIVNO) {
+		if (0 <= x && x < N && 0 <= y && y < N && plosca[x][y] == Polje.AKTIVNO) {
 			return true;
 		}
 		else {return false;}
 	}
 	
-	// Vrne položaj igralca ki je na potezi
-	
+	// Vrne položaj igralca ki je na potezi	
 	public Polozaj polozajIgralca() {
-		if (naPotezi.toString() == polozajBeli.getIme()) {
+		if (naPotezi == Igralec.BELI) {
 			return polozajBeli;
 		}
 		else { return polozajCrni;}
 	}
 	
-	// Seznam možnih potez za igralca, ki je na potezi
-	
+	// Seznam možnih potez za igralca, ki je na potezi	
 	public List<Poteza> poteze(){
 		LinkedList<Poteza> moznePoteze = new LinkedList<Poteza>();
 		Polozaj polozaj = polozajIgralca(); //polozaj igralca, ki je na potezi
@@ -92,10 +82,9 @@ public class Igra {
 				if (Math.abs(i) != Math.abs(j)) {
 					Poteza poteza = new Poteza(x + i,y + j);
 					
-					if(veljavnaPoteza(poteza)) {
+					if(veljavnoPolje(poteza)) {
 						moznePoteze.add(poteza);
 					}
-					
 				}
 			}
 		}
@@ -105,7 +94,7 @@ public class Igra {
 	
 	public Stanje stanje() {
 		//Preverimo, ce imamo zmagovalca
-		//ce igralec nima vec moznih potez je zmagovalec nasprotnik
+		//ce igralec nima vec moznih potez, je zmagovalec nasprotnik
 		if (poteze().isEmpty()) {
 			if (naPotezi.toString() == "BELI") {
 				return Stanje.ZMAGA_CRNI;
@@ -119,27 +108,19 @@ public class Igra {
 				return Stanje.NA_POTEZI_CRNI;
 			}
 		}
-		
-		
 	}
 	
-	//Odigaj potezo - vrne True, èe je bila poteza uspešno odigrana
-	
+	//Odigaj potezo - vrne True, èe je bila poteza uspešno odigrana	
 	public boolean odigraj(Poteza p) {	
 		
 		if (poteze().contains(p)) {
 			plosca[p.getX()][p.getY()] = Polje.NEAKTIVNO;
-			polozajIgralca().setX(p.getX());
-			polozajIgralca().setY(p.getY());
+			polozajIgralca().setXY(p.getX(), p.getY());
 			naPotezi = naPotezi.nasprotnik();
 			return true;
 					
 		}else {
 			return false;
 			}
-		
 	}
-	
-	
-
 }
