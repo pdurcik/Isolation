@@ -49,7 +49,7 @@ public class Igra {
 		naPotezi = Igralec.BELI;		
 	}
 	
-	// Preveri, èe je poteza veljavna	
+	// Preveri, èe je polje na katerega prestavimo figuro s potezo p veljavno
 	public boolean veljavnoPolje(Poteza poteza) {
 		int x = poteza.getX();
 		int y = poteza.getY();
@@ -112,8 +112,11 @@ public class Igra {
 	
 	//Odigaj potezo - vrne True, èe je bila poteza uspešno odigrana	
 	public boolean odigraj(Poteza p) {	
+		int razdalja = Math.abs(p.getX() - polozajIgralca().getX() ) + Math.abs(p.getY() - polozajIgralca().getY()) ;
 		
-		if (poteze().contains(p)) {
+		//poteza p je veljavna, ce je njena manhattanska razdalja od polozaja igralca na potezi
+		//enaka 3 in da je polje[p.x][p.y] aktivno
+		if (razdalja == 3 && plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
 			plosca[p.getX()][p.getY()] = Polje.NEAKTIVNO;
 			polozajIgralca().setXY(p.getX(), p.getY());
 			naPotezi = naPotezi.nasprotnik();

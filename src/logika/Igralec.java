@@ -8,10 +8,6 @@ public enum Igralec {
 		return (this == BELI ? CRNI : BELI);
 	}
 	
-//	public Polje getPolje() {
-//		return (this == BELI ? Polje.BELI : Polje.CRNI);
-//	}
-	
 	public String toString() {
 		switch(this) {
 		case BELI: return "BELI";
