@@ -1,1 +1,0 @@
-INDEX VERSION 1.130+C:\Users\Primož\Desktop\programiranje_2\Isolation\.metadata\.plugins\org.eclipse.jdt.core
