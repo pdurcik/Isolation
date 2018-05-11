@@ -27,16 +27,26 @@ public class Igra {
 				plosca[i][j] = Polje.AKTIVNO;
 			}
 		}
+		
 		// Zacetni položaj belega igralca je izbran nakljuèno.
 		// Polje na katerem je figura je tudi neaktivno.
+		
+		// to zakomentiraj, èe želiš preverit test
 		int  x1 = rand.nextInt(N);
 		int  y1 = rand.nextInt(N);
+		
+		// to odkomenitraj, èe želiš preverit test
+		//int x1 = 3;
+		//int y1 = 3;
+		
 		polozajBeli = new Polozaj(x1, y1);// nov polozaj z imenom belega igralca
 		plosca[x1][y1] = Polje.NEAKTIVNO;
 		
-		// Zaæetni položaj èrnega igralca je izbran nakljuèno
-		// in ni isti kot zaèetni položaj belega igralca.
-		// Polje na katerem je figura je tudi neaktivno.
+		//Zaæetni položaj èrnega igralca je izbran nakljuèno
+		//in ni isti kot zaèetni položaj belega igralca.
+		//Polje na katerem je figura je tudi neaktivno.
+		
+		// to zanko zakomentiraj, èe želiš preverit test
 		while (true) {
 			int  x2 = rand.nextInt(N);
 			int  y2 = rand.nextInt(N);
@@ -46,10 +56,17 @@ public class Igra {
 				break;
 			}
 		}
+		
+		// to odkomentiraj, èe želiš preverit test
+		//int x2 = 0;
+		//int y2 = 0;		
+		//polozajCrni =  new Polozaj(x2,y2);
+		//plosca[x2][y2] = Polje.NEAKTIVNO;
+		
 		naPotezi = Igralec.BELI;		
 	}
 	
-	// Preveri, èe je poteza veljavna	
+	// Preveri, èe je polje na katerega prestavimo figuro s potezo p veljavno	
 	public boolean veljavnoPolje(Poteza poteza) {
 		int x = poteza.getX();
 		int y = poteza.getY();
@@ -96,13 +113,13 @@ public class Igra {
 		//Preverimo, ce imamo zmagovalca
 		//ce igralec nima vec moznih potez, je zmagovalec nasprotnik
 		if (poteze().isEmpty()) {
-			if (naPotezi.toString() == "BELI") {
+			if (naPotezi == Igralec.BELI) {
 				return Stanje.ZMAGA_CRNI;
 			}else {
 				return Stanje.ZMAGA_BELI;
 			}
 		} else { 
-			if (naPotezi.toString() == "BELI") {
+			if (naPotezi == Igralec.BELI) {
 				return Stanje.NA_POTEZI_BELI;
 			} else {
 				return Stanje.NA_POTEZI_CRNI;
@@ -112,8 +129,11 @@ public class Igra {
 	
 	//Odigaj potezo - vrne True, èe je bila poteza uspešno odigrana	
 	public boolean odigraj(Poteza p) {	
+		int razdalja = Math.abs(p.getX() - polozajIgralca().getX() ) + Math.abs(p.getY() - polozajIgralca().getY());
 		
-		if (poteze().contains(p)) {
+		//poteza p je veljavna, ce je njena manhattanska razdalja od polozaja igralca na potezi
+		//enaka 3 in da je polje[p.x][p.y] aktivno
+		if (razdalja == 3 && plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
 			plosca[p.getX()][p.getY()] = Polje.NEAKTIVNO;
 			polozajIgralca().setXY(p.getX(), p.getY());
 			naPotezi = naPotezi.nasprotnik();
@@ -122,5 +142,20 @@ public class Igra {
 		}else {
 			return false;
 			}
+	}
+	
+	// presteje stevilo aktivnih polj na plosci. za delovanje same logike igre je ta 
+	// metoda nepomembna je pa zaradi testa. na zacetku mora biti N*N-2 aktivnih polj
+	// po vsaki odigrani potezi pa eno aktivno polje manj
+	public int steviloAktivnih() {
+		int a = 0;
+		for (int i=0; i < N; i++) {
+			for (int j=0; j < N; j++) {
+				if (plosca[i][j]==Polje.AKTIVNO) {
+					a += 1;
+				}
+			}
+		}
+		return a;
 	}
 }
