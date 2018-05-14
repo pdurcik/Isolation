@@ -66,6 +66,20 @@ public class Igra {
 		naPotezi = Igralec.BELI;		
 	}
 	
+	// igra nova kopija dane igre
+	public Igra(Igra igra) {
+		plosca = new Polje[N][N];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				plosca[i][j] = igra.plosca[i][j];
+			}
+		}
+		this.naPotezi = igra.naPotezi;
+	}
+	
+	public Polje[][] getPlosca(){
+		return plosca;
+	}
 
 	// Preveri, èe je polje na katerega prestavimo figuro s potezo p veljavno
 	public boolean veljavnoPolje(Poteza poteza) {
