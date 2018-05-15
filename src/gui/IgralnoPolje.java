@@ -16,6 +16,10 @@ import logika.Polje;
 public class IgralnoPolje extends JPanel implements MouseListener{
 	private GlavnoOkno master;
 	
+	//barve
+	Color temnoRjava = new Color(181, 134, 101);
+	Color svetloRjava = new Color(236,215,180); 
+	
 	
 	
 	public IgralnoPolje(GlavnoOkno master) {
@@ -48,17 +52,27 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		double y = sirina*j;
 		g2.setColor(Color.white);
 		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
-		//g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.setColor(Color.black);
+		g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
 	}
 	
 	public void aktivnoPolje(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
 		double y = sirina*j;
-		g2.setColor(Color.pink);
-		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
-		g2.setColor(Color.black);
-		g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		
+		if ((i+j)%2 == 0) {
+			g2.setColor(temnoRjava);
+			g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+			g2.setColor(Color.black);
+			g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		}else {
+			g2.setColor(svetloRjava);
+			g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+			g2.setColor(Color.black);
+			g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		}
+		
 		
 	}
 	
