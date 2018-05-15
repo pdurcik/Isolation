@@ -75,6 +75,12 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		return (igra == null ? null : igra.getPlosca());
 	}
 	
+	public Igra getIgra() {
+		return igra;
+	}
+	
+	
+	
 	public void nova_igra() {
 		if (strategBELI != null) { strategBELI.prekini();}
 		if (strategCRNI != null) { strategCRNI.prekini();}

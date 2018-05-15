@@ -173,4 +173,12 @@ public class Igra {
 		}
 		return a;
 	}
+	
+	public Polozaj getPolozajBeli() {
+		return polozajBeli;
+	}
+	
+	public Polozaj getPolozajCrni() {
+		return polozajCrni;
+	}
 }
