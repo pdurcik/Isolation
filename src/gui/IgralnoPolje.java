@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,6 +21,9 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 	//barve
 	Color temnoRjava = new Color(181, 134, 101);
 	Color svetloRjava = new Color(236,215,180); 
+	
+	//slike konjev
+	Image konjBeli = Toolkit.getDefaultToolkit().getImage("/Isolation/slike/black_chess_knight.png");
 	
 	
 	
@@ -54,6 +59,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
 		g2.setColor(Color.black);
 		g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.drawImage(konjBeli, (int) x, (int) y, (int)sirina, (int)sirina, this);
 	}
 	
 	public void aktivnoPolje(Graphics2D g2, int i, int j) {

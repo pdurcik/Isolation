@@ -148,7 +148,8 @@ public class Igra {
 		
 		//poteza p je veljavna, ce je njena manhattanska razdalja od polozaja igralca na potezi
 		//enaka 3 in da je polje[p.x][p.y] aktivno
-		if (razdalja == 3 && plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
+		//da je vsaj ena od mkoordinat poteze razliscna od polozaja igralca na potezi
+		if ((p.getX() != polozajIgralca().getX() && p.getY() != polozajIgralca().getY()) && razdalja == 3 && plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
 			plosca[p.getX()][p.getY()] = Polje.NEAKTIVNO;
 			polozajIgralca().setXY(p.getX(), p.getY());
 			naPotezi = naPotezi.nasprotnik();
