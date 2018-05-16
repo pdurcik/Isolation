@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import logika.Igra;
 import logika.Polje;
+import logika.Stanje;
 
 @SuppressWarnings("serial")
 public class IgralnoPolje extends JPanel implements MouseListener{
@@ -46,8 +47,8 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
 		double y = sirina*j;
-		g2.setColor(temnoSiva);
-		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+		//g2.setColor(temnoSiva);
+		//g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
 		g2.drawImage(konjCrni, (int) x, (int) y, (int)sirina, (int)sirina, this);
 		//g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
 	}
@@ -94,6 +95,17 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		
 	}
 	
+	public void zmaga(Graphics2D g2, int i, int j) {
+		double sirina = sirinaKvadratka();
+		double x = sirina*i;
+		double y = sirina*j;
+		
+		g2.setColor(Color.green);
+		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.setColor(Color.black);
+		g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+	}
+	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
@@ -117,6 +129,13 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		int iCrni = master.getIgra().getPolozajCrni().getX();
 		int jCrni= master.getIgra().getPolozajCrni().getY();
 		
+		
+		
+		if (master.getIgra().stanje() == Stanje.ZMAGA_BELI) {
+			zmaga(g2, iBeli, jBeli);
+		} else if (master.getIgra().stanje() == Stanje.ZMAGA_CRNI) {
+			zmaga(g2, iCrni, jCrni);
+		}
 		paintBeli(g2, iBeli, jBeli);
 		
 		paintCrni(g2, iCrni, jCrni);
