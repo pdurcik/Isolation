@@ -21,11 +21,11 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 	//barve
 	Color temnoRjava = new Color(181, 134, 101);
 	Color svetloRjava = new Color(236,215,180); 
+	Color temnoSiva = new Color(51, 51, 51);
 	
 	//slike konjev
-	Image konjBeli = Toolkit.getDefaultToolkit().getImage("/Isolation/slike/black_chess_knight.png");
-	
-	
+	Image konjBeli = Toolkit.getDefaultToolkit().getImage("./slike/white_chess_knight.png");
+	Image konjCrni = Toolkit.getDefaultToolkit().getImage("./slike/black_chess_knight.png");
 	
 	public IgralnoPolje(GlavnoOkno master) {
 		super();
@@ -46,8 +46,9 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
 		double y = sirina*j;
-		g2.setColor(Color.black);
+		g2.setColor(temnoSiva);
 		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.drawImage(konjCrni, (int) x, (int) y, (int)sirina, (int)sirina, this);
 		//g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
 	}
 	
