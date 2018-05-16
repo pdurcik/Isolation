@@ -43,16 +43,17 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		return Math.min(getWidth(), getHeight())/Igra.N;
 	}
 	
+	// narise crnega igralca - crno polje in crn konj
 	private void paintCrni(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
 		double y = sirina*j;
-		//g2.setColor(temnoSiva);
-		//g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.setColor(temnoSiva);
+		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
 		g2.drawImage(konjCrni, (int) x, (int) y, (int)sirina, (int)sirina, this);
-		//g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
 	}
 	
+	// narise belega igralca: belo polje in bel konj
 	private void paintBeli(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
@@ -64,6 +65,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		g2.drawImage(konjBeli, (int) x, (int) y, (int)sirina, (int)sirina, this);
 	}
 	
+	// aktivna polja so v barvah sahovnice
 	public void aktivnoPolje(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
@@ -84,6 +86,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		
 	}
 	
+	// neaktivna polja so sive barve
 	public void neaktivnoPolje(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
@@ -95,6 +98,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		
 	}
 	
+	// polje, kjer je zmagovalec, pobarva zeleno
 	public void zmaga(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;
@@ -104,6 +108,13 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
 		g2.setColor(Color.black);
 		g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		
+		if (master.getIgra().stanje() == Stanje.ZMAGA_BELI) {
+			g2.drawImage(konjBeli, (int) x, (int) y, (int)sirina, (int)sirina, this);
+		} else if (master.getIgra().stanje() == Stanje.ZMAGA_CRNI) {
+			g2.drawImage(konjCrni, (int) x, (int) y, (int)sirina, (int)sirina, this);
+
+		}
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -122,24 +133,24 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		}
 		
 		//nariseva igralca
-		//polzaj belega
+		//polozaj belega
 		int iBeli = master.getIgra().getPolozajBeli().getX();
 		int jBeli = master.getIgra().getPolozajBeli().getY();
 		// polozaj crnega
 		int iCrni = master.getIgra().getPolozajCrni().getX();
 		int jCrni= master.getIgra().getPolozajCrni().getY();
+
+		paintBeli(g2, iBeli, jBeli);
+		paintCrni(g2, iCrni, jCrni);
 		
-		
-		
+		// polje zmagovalc pobarvaj zeleno
 		if (master.getIgra().stanje() == Stanje.ZMAGA_BELI) {
 			zmaga(g2, iBeli, jBeli);
 		} else if (master.getIgra().stanje() == Stanje.ZMAGA_CRNI) {
 			zmaga(g2, iCrni, jCrni);
 		}
-		paintBeli(g2, iBeli, jBeli);
-		
-		paintCrni(g2, iCrni, jCrni);
-		}	
+
+	}	
 	
 
 	@Override
@@ -154,8 +165,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		
 		if (0<=i && i < Igra.N && 0 <= j && j < Igra.N) {
 			master.klikniPolje(i, j);
-		}
-		
+		}		
 	}
 
 	@Override
