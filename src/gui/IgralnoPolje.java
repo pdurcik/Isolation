@@ -23,8 +23,8 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 	Color svetloRjava = new Color(236,215,180); 
 	
 	//slike konjev
-	Image konjBeli = Toolkit.getDefaultToolkit().getImage("/Isolation/slike/black_chess_knight.png");
-	
+	Image konjBeli = Toolkit.getDefaultToolkit().getImage("./slike/white_chess_knight.png");
+	Image konjCrni = Toolkit.getDefaultToolkit().getImage("./slike/black_chess_knight.png");
 	
 	
 	public IgralnoPolje(GlavnoOkno master) {
@@ -48,7 +48,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		double y = sirina*j;
 		g2.setColor(Color.black);
 		g2.fillRect((int) x, (int) y, (int)sirina, (int)sirina);
-		//g2.drawRect((int) x, (int) y, (int)sirina, (int)sirina);
+		g2.drawImage(konjCrni, (int) x, (int) y, (int)sirina, (int)sirina, this);
 	}
 	
 	private void paintBeli(Graphics2D g2, int i, int j) {
