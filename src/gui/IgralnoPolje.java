@@ -27,7 +27,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 	//slike konjev
 	Image konjBeli = Toolkit.getDefaultToolkit().getImage("./slike/white_chess_knight.png");
 	Image konjCrni = Toolkit.getDefaultToolkit().getImage("./slike/black_chess_knight.png");
-	
+
 	public IgralnoPolje(GlavnoOkno master) {
 		super();
 		setBackground(Color.white);
@@ -133,7 +133,6 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 		}
 		
 		//nariseva igralca
-		//polozaj belega
 		int iBeli = master.getIgra().getPolozajBeli().getX();
 		int jBeli = master.getIgra().getPolozajBeli().getY();
 		// polozaj crnega
