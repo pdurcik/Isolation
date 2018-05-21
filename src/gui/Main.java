@@ -7,5 +7,6 @@ public class Main {
 		okno.pack();
 		okno.setVisible(true);
 	}
+	
 
 }
