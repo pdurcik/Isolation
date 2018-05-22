@@ -18,17 +18,18 @@ import logika.Poteza;
 
 @SuppressWarnings("serial")
 public class GlavnoOkno extends JFrame implements ActionListener{
-	private IgralnoPolje polje;
+	//atributi
+	private IgralnoPolje polje;	
+	private JLabel status;//statusna vrstica
 	
-	private JLabel status;
-	
-	private Igra igra;
-	
-	private Strateg strategBELI;
-	
+	private Igra igra;	
+	private Strateg strategBELI;//strateg, ki premika belega konja	
 	private Strateg strategCRNI;
 	
+	
+	//izbire v menuju
 	private JMenuItem nova_igra;
+	
 	
 	public GlavnoOkno() {
 		this.setTitle("Isolation");

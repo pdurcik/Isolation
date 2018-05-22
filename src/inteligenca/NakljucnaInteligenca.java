@@ -24,7 +24,7 @@ public class NakljucnaInteligenca extends SwingWorker<Poteza, Object> {
 		for (int i = 0; i < 5; i++) {
 			System.out.println("mislim...");
 			try {
-				Thread.sleep(500);
+				Thread.sleep(200);
 			} catch (InterruptedException e) { }
 			if (this.isCancelled()) {
 				System.out.println("Prekinili so me!");

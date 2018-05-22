@@ -66,7 +66,7 @@ public class Igra {
 		naPotezi = Igralec.BELI;		
 	}
 	
-	// igra nova kopija dane igre
+	// igra nova kopija dane igre kot argument
 	public Igra(Igra igra) {
 		plosca = new Polje[N][N];
 		for (int i = 0; i < N; i++) {
@@ -75,6 +75,9 @@ public class Igra {
 			}
 		}
 		this.naPotezi = igra.naPotezi;
+		this.polozajBeli = igra.getPolozajBeli();
+		this.polozajCrni = igra.getPolozajCrni();
+		
 	}
 	
 	public Polje[][] getPlosca(){
@@ -148,8 +151,11 @@ public class Igra {
 		
 		//poteza p je veljavna, ce je njena manhattanska razdalja od polozaja igralca na potezi
 		//enaka 3 in da je polje[p.x][p.y] aktivno
-		//da je vsaj ena od mkoordinat poteze razliscna od polozaja igralca na potezi
-		if ((p.getX() != polozajIgralca().getX() && p.getY() != polozajIgralca().getY()) && razdalja == 3 && plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
+		//in da sta koordinati poteze razlicni od polozaja igralca na potezi
+		if ((p.getX() != polozajIgralca().getX() 
+				&& p.getY() != polozajIgralca().getY()) 
+				&& razdalja == 3 
+				&& plosca[p.getX()][p.getY()] == Polje.AKTIVNO) {
 			plosca[p.getX()][p.getY()] = Polje.NEAKTIVNO;
 			polozajIgralca().setXY(p.getX(), p.getY());
 			naPotezi = naPotezi.nasprotnik();
