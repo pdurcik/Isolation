@@ -188,4 +188,33 @@ public class Igra {
 	public Polozaj getPolozajCrni() {
 		return polozajCrni;
 	}
+	
+	//vrne možne poteze za dan polozaja x in y
+	public List<Poteza> moznePoteze(int x, int y){
+		LinkedList<Poteza> moznePoteze = new LinkedList<Poteza>();
+		
+		int[] premiki = {-2,-1,1,2}; //tabela premikov konja
+		
+		for (int i: premiki) {
+			for (int j:premiki) {
+				if (Math.abs(i) != Math.abs(j)) {
+					Poteza poteza = new Poteza(x + i,y + j);
+					
+					if(veljavnoPolje(poteza)) {
+						moznePoteze.add(poteza);
+					}
+				}
+			}
+		}
+		
+		return(moznePoteze);
+	}
+	//nastavi polje x,y na neaktivno
+	public void setNeaktivno(int x, int y) {
+		this.plosca[x][y] = Polje.NEAKTIVNO;
+	}
+
 }
+
+
+

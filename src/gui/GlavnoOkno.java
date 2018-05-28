@@ -87,7 +87,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		if (strategCRNI != null) { strategCRNI.prekini();}
 		this.igra = new Igra();
 		strategBELI = new Clovek(this);
-		strategCRNI = new Racunalnik(this);
+		strategCRNI = new Clovek(this);
 		// tistemu ki je na potezi to povemo
 		switch(igra.stanje()) {
 		case NA_POTEZI_BELI: strategBELI.na_potezi();break;
