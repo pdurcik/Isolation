@@ -173,6 +173,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		}
 	}
 	
+	//vrne kopijo igre
 	public Igra copyIgra() {
 		return new Igra(igra);
 	}

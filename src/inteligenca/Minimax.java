@@ -67,6 +67,7 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 
 		}
 		assert (naPotezi != null);
+		
 		// Nekdo je na potezi, ugotovimo, kaj se splaèa igrati
 		if (k >= globina) {
 			// dosegli smo najveèjo dovoljeno globino, zato
@@ -75,9 +76,11 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 					null,
 					Ocena.oceniPozicijo(jaz, igra));
 		}
+		
 		// Hranimo najboljšo do sedaj videno potezo in njeno oceno.
 		Poteza najboljsa = null;
 		int ocenaNajboljse = 0;
+		
 		for (Poteza p : igra.poteze()) {
 			// V kopiji igre odigramo potezo p
 			Igra kopijaIgre = new Igra(igra);
