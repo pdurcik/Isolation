@@ -17,7 +17,7 @@ public class Racunalnik extends Strateg {
 	private SwingWorker<Poteza,Object> mislec;
 	private boolean prekini;
 	private Igralec jaz;
-	private static int globina = 1;
+	private static int globina = 5;
 
 	public Racunalnik(GlavnoOkno master, Igralec jaz) {
 		this.master = master;

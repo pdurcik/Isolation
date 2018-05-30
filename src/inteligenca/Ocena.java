@@ -23,8 +23,8 @@ public class Ocena {
 			return (jaz == Igralec.CRNI ? ZMAGA : ZGUBA);
 		case NA_POTEZI_BELI:
 		case NA_POTEZI_CRNI:
-			//return(jaz == Igralec.CRNI? UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajCrni()) : UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajBeli()));
-			return 100;
+			return(jaz == Igralec.CRNI? UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajCrni()) : UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajBeli()));
+			//return 100;
 		}
 		assert false;
 		return 0; 

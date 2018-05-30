@@ -75,8 +75,10 @@ public class Igra {
 			}
 		}
 		this.naPotezi = igra.naPotezi;
-		this.polozajBeli = igra.getPolozajBeli();
-		this.polozajCrni = igra.getPolozajCrni();
+		
+		// podobna finta kot zadnjiè!! naredi new polozaj, v razredu položaj pa konstrutor ki kopira položaj
+		this.polozajBeli = new Polozaj(igra.getPolozajBeli());
+		this.polozajCrni = new Polozaj(igra.getPolozajCrni());
 		
 	}
 	
