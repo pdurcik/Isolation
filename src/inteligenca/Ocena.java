@@ -2,7 +2,7 @@ package inteligenca;
 
 import logika.Igra;
 import logika.Igralec;
-import logika.Polje;
+
 
 public class Ocena {
 	public static final int ZMAGA = (1 << 20); // vrednost zmage, veè kot vsaka druga ocena pozicije
@@ -23,10 +23,11 @@ public class Ocena {
 			return (jaz == Igralec.CRNI ? ZMAGA : ZGUBA);
 		case NA_POTEZI_BELI:
 		case NA_POTEZI_CRNI:
-	   
+			//return(jaz == Igralec.CRNI? UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajCrni()) : UTEZ * KvaziGlobina.ocenaGlobine(igra, igra.getPolozajBeli()));
+			return 100;
 		}
 		assert false;
-		return 42; // Java je blesava
+		return 0; 
 	}
 	
 }

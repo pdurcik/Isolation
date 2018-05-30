@@ -8,15 +8,8 @@ import logika.Polozaj;
 import logika.Poteza;
 
 public class KvaziGlobina {
-	private Igra igra;
-	private Polozaj polozaj;
-	
-	public KvaziGlobina(Igra igra, Polozaj polozaj) {
-		this.igra = igra;
-		this.polozaj = polozaj;
-	}
-	
-	public int ocenaGlobine() {
+		
+	public static int ocenaGlobine(Igra igra, Polozaj polozaj) {
 		int globina = 1;
 		
 		List<Poteza> prvePoteze= igra.moznePoteze(polozaj.getX(), polozaj.getY());
@@ -40,9 +33,10 @@ public class KvaziGlobina {
 			prvePoteze.clear();
 			prvePoteze.addAll(sosednePoteze);
 			sosednePoteze.clear();
+			globina ++;
 			
 		}
-		return 0;
+		return globina - 1;
 	}
 
 }

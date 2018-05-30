@@ -36,8 +36,8 @@ public class Igra {
 		int  y1 = rand.nextInt(N);
 		
 		// to odkomenitraj, èe želiš preverit test
-		//int x1 = 3;
-		//int y1 = 3;
+		//int x1 = 0;
+		//int y1 = 0;
 		
 		polozajBeli = new Polozaj(x1, y1);// nov polozaj z imenom belega igralca
 		plosca[x1][y1] = Polje.NEAKTIVNO;
@@ -58,8 +58,8 @@ public class Igra {
 		}
 		
 		// to odkomentiraj, èe želiš preverit test
-		//int x2 = 0;
-		//int y2 = 0;		
+		//int x2 = 3;
+		//int y2 = 3;		
 		//polozajCrni =  new Polozaj(x2,y2);
 		//plosca[x2][y2] = Polje.NEAKTIVNO;
 		
@@ -181,14 +181,16 @@ public class Igra {
 		return a;
 	}
 	
+	//vrne polozaj belega igralca
 	public Polozaj getPolozajBeli() {
 		return polozajBeli;
 	}
-	
+	//vrne polozaj crnega igralca
 	public Polozaj getPolozajCrni() {
 		return polozajCrni;
 	}
 	
+	//ta funcija je pomembna za oceno pozicije
 	//vrne možne poteze za dan polozaja x in y
 	public List<Poteza> moznePoteze(int x, int y){
 		LinkedList<Poteza> moznePoteze = new LinkedList<Poteza>();
@@ -209,6 +211,7 @@ public class Igra {
 		
 		return(moznePoteze);
 	}
+	
 	//nastavi polje x,y na neaktivno
 	public void setNeaktivno(int x, int y) {
 		this.plosca[x][y] = Polje.NEAKTIVNO;
