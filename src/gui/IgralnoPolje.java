@@ -116,7 +116,7 @@ public class IgralnoPolje extends JPanel implements MouseListener{
 
 		}
 	}
-	// polje, kjer je poraûenec pobarva rdece
+	// polje, kjer je pora≈æenec pobarva rdece
 	public void poraz(Graphics2D g2, int i, int j) {
 		double sirina = sirinaKvadratka();
 		double x = sirina*i;

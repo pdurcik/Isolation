@@ -11,7 +11,6 @@ public class Polozaj {
 	}
 
 	public Polozaj(Polozaj polozaj) {
-		// TODO Auto-generated constructor stub
 		this.x = polozaj.getX();
 		this.y = polozaj.getY();
 		

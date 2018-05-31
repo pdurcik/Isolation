@@ -26,10 +26,10 @@ public class Racunalnik extends Strateg {
 	
 	@Override
 	public void na_potezi() {
-		// Zacnemo razmišljati
+		// Zacnemo razmiÅ¡ljati
 		mislec = new Minimax(master, globina, jaz);
 		
-		//raèunalnik nakljuèno izbira poteze
+		//raÄunalnik nakljuÄno izbira poteze
 		//mislec = new NakljucnaInteligenca(master);
 		mislec.execute();
 	}

@@ -45,19 +45,19 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		JMenu igra_menu = new JMenu("Igra");
 		menu_bar.add(igra_menu);
 
-		igraClovekRacunalnik = new JMenuItem("Èlovek – raèunalnik");
+		igraClovekRacunalnik = new JMenuItem("ÄŒlovek - raÄunalnik");
 		igra_menu.add(igraClovekRacunalnik);
 		igraClovekRacunalnik.addActionListener(this);
 		
-		igraRacunalnikClovek = new JMenuItem("Raèunalnik – èlovek");
+		igraRacunalnikClovek = new JMenuItem("RaÄunalnik - Älovek");
 		igra_menu.add(igraRacunalnikClovek);
 		igraRacunalnikClovek.addActionListener(this);
 
-		igraRacunalnikRacunalnik = new JMenuItem("Raèunalnik – raèunalnik");
+		igraRacunalnikRacunalnik = new JMenuItem("RaÄunalnik - raÄunalnik");
 		igra_menu.add(igraRacunalnikRacunalnik);
 		igraRacunalnikRacunalnik.addActionListener(this);
 
-		igraClovekClovek = new JMenuItem("Èlovek – èlovek");
+		igraClovekClovek = new JMenuItem("ÄŒlovek - Älovek");
 		igra_menu.add(igraClovekClovek);
 		igraClovekClovek.addActionListener(this);
 		
@@ -71,7 +71,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		polje_layout.weighty = 1.0;
 		getContentPane().add(polje, polje_layout);
 		
-		// statusna vrstica za sporoèila
+		// statusna vrstica za sporoÄila
 		status = new JLabel();
 		status.setFont(new Font(status.getFont().getName(),
 				status.getFont().getStyle(),
@@ -82,7 +82,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		status_layout.anchor = GridBagConstraints.CENTER;
 		getContentPane().add(status, status_layout);
 		
-		// zaènemo novo igro èloveka proti raèunalniku
+		// zaÄnemo novo igro Äloveka proti raÄunalniku
 		novaIgra(new Clovek(this, Igralec.BELI),
 		new Racunalnik(this, Igralec.CRNI));
 		
@@ -90,7 +90,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 	
 	
-	// trenutna igralna plošèa ali null, èe igra ni aktivna
+	// trenutna igralna ploÅ¡Äa ali null, Äe igra ni aktivna
 	public Polje[][] getPlosca(){
 		return (igra == null ? null : igra.getPlosca());
 	}
@@ -100,7 +100,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	}
 	
 	/**
-	 * Zaèni igrati novo igro. Metodo lahko poklièemo kadarkoli in
+	 * ZaÄni igrati novo igro. Metodo lahko pokliÄemo kadarkoli in
 	 * bo pravilno ustavila morebitno trenutno igro.
 	 */
 	public void novaIgra(Strateg noviSrategBELI, Strateg noviStrategCRNI) {
@@ -150,9 +150,9 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		else {
 			switch (igra.stanje()) {
 			case NA_POTEZI_BELI: status.setText("Na potezi je beli.");break;
-			case NA_POTEZI_CRNI: status.setText("Na potezi je èrni.");break;
+			case NA_POTEZI_CRNI: status.setText("Na potezi je Ärni.");break;
 			case ZMAGA_BELI: status.setText("Zmagal je beli."); break;
-			case ZMAGA_CRNI: status.setText("Zmagal je èrni.");break;
+			case ZMAGA_CRNI: status.setText("Zmagal je Ärni.");break;
 			}
 		}
 		polje.repaint();

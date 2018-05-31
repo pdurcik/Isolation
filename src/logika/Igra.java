@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Igra {
 	
-	// Velikost igralne ploöËe
+	// Velikost igralne plo≈°ƒçe
 	public static final int N = 7;
 	
 	// Atributi	
@@ -15,7 +15,7 @@ public class Igra {
 	private Polozaj polozajBeli;
 	private Polozaj polozajCrni;
 	
-	// Nova igra v zaËetni poziciji, ki je izbrana nakljuËno. Na potezi je BELI.
+	// Nova igra v zaƒçetni poziciji, ki je izbrana nakljuƒçno. Na potezi je BELI.
 	
 	public Igra() {
 		Random rand = new Random();
@@ -28,25 +28,25 @@ public class Igra {
 			}
 		}
 		
-		// Zacetni poloûaj belega igralca je izbran nakljuËno.
+		// Zacetni polo≈æaj belega igralca je izbran nakljuƒçno.
 		// Polje na katerem je figura je tudi neaktivno.
 		
-		// to zakomentiraj, Ëe ûeliö preverit test
+		// to zakomentiraj, ƒçe ≈æeli≈° preverit test
 		int  x1 = rand.nextInt(N);
 		int  y1 = rand.nextInt(N);
 		
-		// to odkomenitraj, Ëe ûeliö preverit test
+		// to odkomenitraj, ƒçe ≈æeli≈° preverit test
 		//int x1 = 0;
 		//int y1 = 0;
 		
 		polozajBeli = new Polozaj(x1, y1);// nov polozaj z imenom belega igralca
 		plosca[x1][y1] = Polje.NEAKTIVNO;
 		
-		//ZaÊetni poloûaj Ërnega igralca je izbran nakljuËno
-		//in ni isti kot zaËetni poloûaj belega igralca.
+		//Zaƒçetni polo≈æaj ƒçrnega igralca je izbran nakljuƒçno
+		//in ni isti kot zaƒçetni polo≈æaj belega igralca.
 		//Polje na katerem je figura je tudi neaktivno.
 		
-		// to zanko zakomentiraj, Ëe ûeliö preverit test
+		// to zanko zakomentiraj, ƒçe ≈æeli≈° preverit test
 		while (true) {
 			int  x2 = rand.nextInt(N);
 			int  y2 = rand.nextInt(N);
@@ -57,7 +57,7 @@ public class Igra {
 			}
 		}
 		
-		// to odkomentiraj, Ëe ûeliö preverit test
+		// to odkomentiraj, ƒçe ≈æeli≈° preverit test
 		//int x2 = 3;
 		//int y2 = 3;		
 		//polozajCrni =  new Polozaj(x2,y2);
@@ -75,8 +75,6 @@ public class Igra {
 			}
 		}
 		this.naPotezi = igra.naPotezi;
-		
-		// podobna finta kot zadnjiË!! naredi new polozaj, v razredu poloûaj pa konstrutor ki kopira poloûaj
 		this.polozajBeli = new Polozaj(igra.getPolozajBeli());
 		this.polozajCrni = new Polozaj(igra.getPolozajCrni());
 		
@@ -86,7 +84,7 @@ public class Igra {
 		return plosca;
 	}
 
-	// Preveri, Ëe je polje na katerega prestavimo figuro s potezo p veljavno
+	// Preveri, ƒçe je polje na katerega prestavimo figuro s potezo p veljavno
 	public boolean veljavnoPolje(Poteza poteza) {
 		int x = poteza.getX();
 		int y = poteza.getY();
@@ -96,7 +94,7 @@ public class Igra {
 		else {return false;}
 	}
 	
-	// Vrne poloûaj igralca ki je na potezi	
+	// Vrne polo≈æaj igralca ki je na potezi	
 	public Polozaj polozajIgralca() {
 		if (naPotezi == Igralec.BELI) {
 			return polozajBeli;
@@ -104,7 +102,7 @@ public class Igra {
 		else { return polozajCrni;}
 	}
 	
-	// Seznam moûnih potez za igralca, ki je na potezi	
+	// Seznam mo≈ænih potez za igralca, ki je na potezi	
 	public List<Poteza> poteze(){
 		LinkedList<Poteza> moznePoteze = new LinkedList<Poteza>();
 		Polozaj polozaj = polozajIgralca(); //polozaj igralca, ki je na potezi
@@ -147,7 +145,7 @@ public class Igra {
 		}
 	}
 	
-	//Odigaj potezo - vrne True, Ëe je bila poteza uspeöno odigrana	
+	//Odigaj potezo - vrne True, ƒçe je bila poteza uspe≈°no odigrana	
 	public boolean odigraj(Poteza p) {	
 		int razdalja = Math.abs(p.getX() - polozajIgralca().getX() ) + Math.abs(p.getY() - polozajIgralca().getY());
 		
@@ -193,7 +191,7 @@ public class Igra {
 	}
 	
 	//ta funcija je pomembna za oceno pozicije
-	//vrne moûne poteze za dan polozaja x in y
+	//vrne mo≈æne poteze za dan polozaja x in y
 	public List<Poteza> moznePoteze(int x, int y){
 		LinkedList<Poteza> moznePoteze = new LinkedList<Poteza>();
 		

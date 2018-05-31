@@ -5,15 +5,15 @@ import logika.Igralec;
 
 
 public class Ocena {
-	public static final int ZMAGA = (1 << 20); // vrednost zmage, veè kot vsaka druga ocena pozicije
+	public static final int ZMAGA = (1 << 20); // vrednost zmage, veÄ kot vsaka druga ocena pozicije
 	public static final int ZGUBA = -ZMAGA;  // vrednost izgube, mora biti -ZMAGA
 	public static final int UTEZ = 1;
 
 	
 	/**
-	 * @param jaz igralec, ki želi oceno
+	 * @param jaz igralec, ki Å¾eli oceno
 	 * @param igra trentno stanje igre (ne spreminjaj tega objekta!)
-	 * @return ocena vrednosti pozicije (èe je igre konec, je ocena zagotovo pravilna)
+	 * @return ocena vrednosti pozicije (Äe je igre konec, je ocena zagotovo pravilna)
 	 */
 	public static int oceniPozicijo(Igralec jaz, Igra igra) {
 		switch (igra.stanje()) {

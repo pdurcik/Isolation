@@ -14,7 +14,7 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 	private Igralec jaz; // koga igramo
 	
 	/**
-	 * @param master glavno okno, v katerem vleËemo poteze
+	 * @param master glavno okno, v katerem vleƒçemo poteze
 	 * @param globina koliko potez naprej gledamo
 	 * @param jaz koga igramo
 	 */
@@ -42,11 +42,11 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 	}
 
 	/**
-	 * Z metodo minimax poiöËi najboljöo potezo v dani igri.
+	 * Z metodo minimax poi≈°ƒçi najbolj≈°o potezo v dani igri.
 	 * 
-	 * @param k ötevec globine, do kje smo ûe preiskali
+	 * @param k ≈°tevec globine, do kje smo ≈æe preiskali
 	 * @param igra
-	 * @return najboljöa poteza (ali null, Ëe ji ni), skupaj z oceno najboljöe poteze
+	 * @return najbolj≈°a poteza (ali null, ƒçe ji ni), skupaj z oceno najbolj≈°e poteze
 	 */
 	private OcenjenaPoteza minimax(int k, Igra igra) {
 		Igralec naPotezi = null;
@@ -68,16 +68,16 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 		}
 		assert (naPotezi != null);
 		
-		// Nekdo je na potezi, ugotovimo, kaj se splaËa igrati
+		// Nekdo je na potezi, ugotovimo, kaj se splaƒça igrati
 		if (k >= globina) {
-			// dosegli smo najveËjo dovoljeno globino, zato
+			// dosegli smo najveƒçjo dovoljeno globino, zato
 			// ne vrnemo poteze, ampak samo oceno pozicije
 			return new OcenjenaPoteza(
 					null,
 					Ocena.oceniPozicijo(jaz, igra));
 		}
 		
-		// Hranimo najboljöo do sedaj videno potezo in njeno oceno.
+		// Hranimo najbolj≈°o do sedaj videno potezo in njeno oceno.
 		Poteza najboljsa = null;
 		int ocenaNajboljse = 0;
 		
@@ -85,10 +85,10 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 			// V kopiji igre odigramo potezo p
 			Igra kopijaIgre = new Igra(igra);
 			kopijaIgre.odigraj(p);
-			// IzraËunamo vrednost pozicije po odigrani potezi p
+			// Izraƒçunamo vrednost pozicije po odigrani potezi p
 			int ocenaP = minimax(k+1, kopijaIgre).vrednost;
-			// »e je p boljöa poteza, si jo zabeleûimo
-			if (najboljsa == null // öe nimamo kandidata za najboljöo potezo
+			// ƒçe je p bolj≈°a poteza, si jo zabele≈æimo
+			if (najboljsa == null // ƒçe nimamo kandidata za najbolj≈°o potezo
 				|| (naPotezi == jaz && ocenaP > ocenaNajboljse) // maksimiziramo
 				|| (naPotezi != jaz && ocenaP < ocenaNajboljse) // minimiziramo
 				) {
@@ -96,7 +96,7 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 				ocenaNajboljse = ocenaP;
 			}
 		}
-		// Vrnemo najboljöo najdeno potezo in njeno oceno
+		// Vrnemo najbolj≈°o najdeno potezo in njeno oceno
 		assert (najboljsa != null);
 		return new OcenjenaPoteza(najboljsa, ocenaNajboljse);
 }
