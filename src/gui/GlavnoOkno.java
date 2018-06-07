@@ -84,7 +84,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 		// začnemo novo igro človeka proti računalniku
 		novaIgra(new Clovek(this, Igralec.BELI),
-		new Racunalnik(this, Igralec.CRNI));
+		new Racunalnik(this, Igralec.CRNI, 3));
 		
 	}
 		
@@ -127,15 +127,15 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == igraClovekRacunalnik) {
 			novaIgra(new Clovek(this, Igralec.BELI),
-					  new Racunalnik(this, Igralec.CRNI));
+					  new Racunalnik(this, Igralec.CRNI, 5));
 		}
 		else if (e.getSource() == igraRacunalnikClovek) {
-			novaIgra(new Racunalnik(this, Igralec.BELI),
+			novaIgra(new Racunalnik(this, Igralec.BELI, 5),
 					  new Clovek(this, Igralec.CRNI));
 		}
 		else if (e.getSource() == igraRacunalnikRacunalnik) {
-			novaIgra(new Racunalnik(this, Igralec.BELI),
-					  new Racunalnik(this, Igralec.CRNI));
+			novaIgra(new Racunalnik(this, Igralec.BELI, 5),
+					  new Racunalnik(this, Igralec.CRNI, 5));
 		}
 		else if (e.getSource() == igraClovekClovek) {
 			novaIgra(new Clovek(this, Igralec.BELI),

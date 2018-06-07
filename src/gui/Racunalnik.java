@@ -17,11 +17,12 @@ public class Racunalnik extends Strateg {
 	private SwingWorker<Poteza,Object> mislec;
 	private boolean prekini;
 	private Igralec jaz;
-	private static int globina = 5;
+	private int globina;
 
-	public Racunalnik(GlavnoOkno master, Igralec jaz) {
+	public Racunalnik(GlavnoOkno master, Igralec jaz, int globina) {
 		this.master = master;
 		this.jaz = jaz;
+		this.globina = globina;
 	}
 	
 	@Override
