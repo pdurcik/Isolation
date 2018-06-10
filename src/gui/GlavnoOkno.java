@@ -1,11 +1,14 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -34,10 +37,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private double zmageCrni;
 	
 	//atribut globina, kjer uravnavamo težavnost
-	private int globina = 4;
-	
-	//velikost igralne plošče
-	private int velikost = 7;
+	private int globina = 8;
 	
 	
 	//izbire v menuju
@@ -105,9 +105,12 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 		pravila = new JMenuItem("Pravila igre");
 		menu_bar.add(pravila);
+		pravila.setMaximumSize(new Dimension(150,150));
 		pravila.addActionListener(this);
 		
 		izhod = new JMenuItem("Izhod");
+		menu_bar.add(Box.createHorizontalGlue());
+		izhod.setMaximumSize(new Dimension(150,1500));
 		menu_bar.add(izhod);
 		izhod.addActionListener(this);
 		
@@ -200,6 +203,37 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		}else if (e.getSource() == skrajnoTezko) {
 		    this.setGlobina(16);
 		    
+		}else if (e.getSource() == pravila) {
+			
+			JFrame oknoPravil = new JFrame();
+			oknoPravil.setTitle("Pravila igre Isolation");
+			oknoPravil.setFont(new Font(status.getFont().getName(),
+				    status.getFont().getStyle(),
+				    14));
+			final int sirinaOkenca = 300;
+			final int visinaOkenca = 250;
+			oknoPravil.setPreferredSize(new Dimension(sirinaOkenca, visinaOkenca));
+			JLabel besedilo = new JLabel("<html>"
+					+ "<h2 style='padding: 8pt;'>Pravila igre Isolation </h2>"
+					+ "Isolation je igra z dvema igralcema, kjer igralca </br>"
+					+ "premikata svojo figuro. Figuri premikata kot konja</br>"
+					+ "pri šahu. Začetna položaja igralcev sta določena</br>"
+					+ "naključno. Kadarkoli igralec zasede polje, se to polje za</p>"
+					+ "preostanek igre blokira. Prvi igralec, ki nima več </br>"
+					+ "možnih potez, izgubi in nasprotnik je razglašen"
+					+ "za zmagovalca. </br>"
+					+ "</html>");
+			oknoPravil.getContentPane().add(besedilo);
+		
+			
+			oknoPravil.setLocationRelativeTo(this);
+			oknoPravil.setLocation(oknoPravil.getX()-sirinaOkenca/2, oknoPravil.getY()-visinaOkenca/2);
+			
+			oknoPravil.pack();
+			oknoPravil.setVisible(true);
+			
+		} else if (e.getSource() == izhod) {
+			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 		
 	}
@@ -291,15 +325,5 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	}
 
 
-
-	public int getVelikost() {
-		return velikost;
-	}
-
-
-
-	public void setVelikost(int velikost) {
-		this.velikost = velikost;
-	}
 
 }
