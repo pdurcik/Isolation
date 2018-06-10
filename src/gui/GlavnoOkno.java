@@ -28,6 +28,14 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private Strateg strategCRNI;
 	
 	
+	//rezultati (stevilo zmag posameznega igralca)
+	private double zmageBeli;
+	private double zmageCrni;
+	
+	//atribut globina, kjer uravnavamo težavnost
+	private int globina = 3;
+	
+	
 	//izbire v menuju
 	private JMenuItem igraClovekRacunalnik;
 	private JMenuItem igraRacunalnikClovek;
@@ -84,7 +92,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 		// začnemo novo igro človeka proti računalniku
 		novaIgra(new Clovek(this, Igralec.BELI),
-		new Racunalnik(this, Igralec.CRNI, 3));
+		new Racunalnik(this, Igralec.CRNI, globina));
 		
 	}
 		
@@ -127,15 +135,15 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == igraClovekRacunalnik) {
 			novaIgra(new Clovek(this, Igralec.BELI),
-					  new Racunalnik(this, Igralec.CRNI, 5));
+					  new Racunalnik(this, Igralec.CRNI, globina));
 		}
 		else if (e.getSource() == igraRacunalnikClovek) {
-			novaIgra(new Racunalnik(this, Igralec.BELI, 5),
+			novaIgra(new Racunalnik(this, Igralec.BELI, globina),
 					  new Clovek(this, Igralec.CRNI));
 		}
 		else if (e.getSource() == igraRacunalnikRacunalnik) {
-			novaIgra(new Racunalnik(this, Igralec.BELI, 5),
-					  new Racunalnik(this, Igralec.CRNI, 5));
+			novaIgra(new Racunalnik(this, Igralec.BELI, globina),
+					  new Racunalnik(this, Igralec.CRNI, globina));
 		}
 		else if (e.getSource() == igraClovekClovek) {
 			novaIgra(new Clovek(this, Igralec.BELI),
@@ -151,8 +159,28 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 			switch (igra.stanje()) {
 			case NA_POTEZI_BELI: status.setText("Na potezi je beli.");break;
 			case NA_POTEZI_CRNI: status.setText("Na potezi je črni.");break;
-			case ZMAGA_BELI: status.setText("Zmagal je beli."); break;
-			case ZMAGA_CRNI: status.setText("Zmagal je črni.");break;
+			case ZMAGA_BELI: 
+				status.setText("Zmagal je beli.");
+				setZmageBeli(getZmageBeli() + 1);
+				System.out.println("Beli je zmagal " + Double.toString(getZmageBeli()));
+				double winR = getZmageBeli() / (getZmageBeli() + getZmageCrni());
+				System.out.println(winR);
+				//za testiranje inteligence
+				
+				novaIgra(new Racunalnik(this, Igralec.BELI, globina),
+						  new Racunalnik(this, Igralec.CRNI,globina));
+				break;
+			case ZMAGA_CRNI: 
+				status.setText("Zmagal je črni.");
+				
+				setZmageCrni(getZmageCrni() + 1);
+				System.out.println("Crni je zmagal " + Double.toString(getZmageCrni()));
+				double winR1 = getZmageBeli() / (getZmageBeli() + getZmageCrni());
+				System.out.println(winR1);
+				
+				novaIgra(new Racunalnik(this, Igralec.BELI, globina),
+						  new Racunalnik(this, Igralec.CRNI,globina));
+				break;
 			}
 		}
 		polje.repaint();
@@ -187,6 +215,42 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		case ZMAGA_BELI: break;
 		case ZMAGA_CRNI: break;
 		}
+	}
+
+
+
+	public int getGlobina() {
+		return globina;
+	}
+
+
+
+	public void setGlobina(int globina) {
+		this.globina = globina;
+	}
+
+
+
+	public double getZmageBeli() {
+		return zmageBeli;
+	}
+
+
+
+	public void setZmageBeli(double d) {
+		this.zmageBeli = d;
+	}
+
+
+
+	public double getZmageCrni() {
+		return zmageCrni;
+	}
+
+
+
+	public void setZmageCrni(double zmageCrni) {
+		this.zmageCrni = zmageCrni;
 	}
 
 }
