@@ -33,7 +33,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private double zmageCrni;
 	
 	//atribut globina, kjer uravnavamo težavnost
-	private int globina = 3;
+	private int globina = 6;
 	
 	
 	//izbire v menuju
@@ -42,16 +42,32 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private JMenuItem igraClovekClovek;
 	private JMenuItem igraRacunalnikRacunalnik;
 	
+	private JMenuItem lahko;
+	private JMenuItem tezko;
+	private JMenuItem skrajnoTezko;
+	
+	
+	
 	public GlavnoOkno() {
 		this.setTitle("Isolation");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new GridBagLayout());
 		
+	
 		// menu
 		JMenuBar menu_bar = new JMenuBar();
 		this.setJMenuBar(menu_bar);
+		
 		JMenu igra_menu = new JMenu("Igra");
 		menu_bar.add(igra_menu);
+		
+		JMenu nastavitve = new JMenu("Nastavitve igre");
+		menu_bar.add(nastavitve);
+		
+		JMenu tezavnost = new JMenu("Težavnost igre");
+		nastavitve.add(tezavnost);
+		
+		
 
 		igraClovekRacunalnik = new JMenuItem("Človek - računalnik");
 		igra_menu.add(igraClovekRacunalnik);
@@ -68,6 +84,19 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		igraClovekClovek = new JMenuItem("Človek - človek");
 		igra_menu.add(igraClovekClovek);
 		igraClovekClovek.addActionListener(this);
+		
+		lahko = new JMenuItem("Lahko");
+		tezavnost.add(lahko);
+		lahko.addActionListener(this);
+		
+		tezko = new JMenuItem("Težko");
+		tezavnost.add(tezko);
+		tezko.addActionListener(this);
+		
+		skrajnoTezko = new JMenuItem("Skrajno težko");
+		tezavnost.add(skrajnoTezko);
+		skrajnoTezko.addActionListener(this);
+					
 		
 		// igralno polje
 		polje = new IgralnoPolje(this);
@@ -149,6 +178,17 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 			novaIgra(new Clovek(this, Igralec.BELI),
 			          new Clovek(this, Igralec.CRNI));
 		}
+		else if (e.getSource() == lahko) {
+		    this.setGlobina(1);
+		    
+		}else if (e.getSource() == tezko) {
+		    this.setGlobina(6);
+		    
+		}else if (e.getSource() == skrajnoTezko) {
+		    this.setGlobina(10);
+		    
+		}
+		
 	}
 		
 	public void osveziGUI() {
@@ -162,24 +202,10 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 			case ZMAGA_BELI: 
 				status.setText("Zmagal je beli.");
 				setZmageBeli(getZmageBeli() + 1);
-				System.out.println("Beli je zmagal " + Double.toString(getZmageBeli()));
-				double winR = getZmageBeli() / (getZmageBeli() + getZmageCrni());
-				System.out.println(winR);
-				//za testiranje inteligence
-				
-				novaIgra(new Racunalnik(this, Igralec.BELI, globina),
-						  new Racunalnik(this, Igralec.CRNI,globina));
 				break;
 			case ZMAGA_CRNI: 
 				status.setText("Zmagal je črni.");
-				
 				setZmageCrni(getZmageCrni() + 1);
-				System.out.println("Crni je zmagal " + Double.toString(getZmageCrni()));
-				double winR1 = getZmageBeli() / (getZmageBeli() + getZmageCrni());
-				System.out.println(winR1);
-				
-				novaIgra(new Racunalnik(this, Igralec.BELI, globina),
-						  new Racunalnik(this, Igralec.CRNI,globina));
 				break;
 			}
 		}
