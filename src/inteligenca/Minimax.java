@@ -1,5 +1,8 @@
 package inteligenca;
 
+import java.util.LinkedList;
+import java.util.Random;
+
 import javax.swing.SwingWorker;
 
 import gui.GlavnoOkno;
@@ -78,7 +81,7 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 		}
 		
 		// Hranimo najboljšo do sedaj videno potezo in njeno oceno.
-		Poteza najboljsa = null;
+		LinkedList<Poteza> najboljse = new LinkedList<Poteza>();
 		int ocenaNajboljse = 0;
 		
 		for (Poteza p : igra.poteze()) {
@@ -88,16 +91,25 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 			// Izračunamo vrednost pozicije po odigrani potezi p
 			int ocenaP = minimax(k+1, kopijaIgre).vrednost;
 			// če je p boljša poteza, si jo zabeležimo
-			if (najboljsa == null // če nimamo kandidata za najboljšo potezo
+			if (najboljse.isEmpty() // če nimamo kandidata za najboljšo potezo
 				|| (naPotezi == jaz && ocenaP > ocenaNajboljse) // maksimiziramo
 				|| (naPotezi != jaz && ocenaP < ocenaNajboljse) // minimiziramo
 				) {
-				najboljsa = p;
+				najboljse.clear();
+				najboljse.add(p);
 				ocenaNajboljse = ocenaP;
+			} else if ((naPotezi == jaz && ocenaP == ocenaNajboljse)
+					|| (naPotezi != jaz && ocenaP == ocenaNajboljse) ){
+				
+				najboljse.add(p);
+				
 			}
 		}
 		// Vrnemo najboljšo najdeno potezo in njeno oceno
-		assert (najboljsa != null);
+		
+		assert (najboljse.isEmpty());
+		Random rand = new Random();
+		Poteza najboljsa = najboljse.get(rand.nextInt(najboljse.size()));
 		return new OcenjenaPoteza(najboljsa, ocenaNajboljse);
 }
 

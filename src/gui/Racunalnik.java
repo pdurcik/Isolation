@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.swing.SwingWorker;
 
+import inteligenca.AlphaBeta;
 import inteligenca.Minimax;
 import inteligenca.NakljucnaInteligenca;
 import logika.Igra;
@@ -28,7 +29,7 @@ public class Racunalnik extends Strateg {
 	@Override
 	public void na_potezi() {
 		// Zacnemo razmišljati
-		mislec = new Minimax(master, globina, jaz);
+		mislec = new AlphaBeta(master, globina, jaz);
 		
 		//računalnik naključno izbira poteze
 		//mislec = new NakljucnaInteligenca(master);

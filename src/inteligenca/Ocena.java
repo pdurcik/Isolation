@@ -7,7 +7,7 @@ import logika.Igralec;
 public class Ocena {
 	public static final int ZMAGA = (1 << 20); // vrednost zmage, več kot vsaka druga ocena pozicije
 	public static final int ZGUBA = -ZMAGA;  // vrednost izgube, mora biti -ZMAGA
-	public static final int UTEZ = 2;
+	public static final int UTEZ = 3;
 
 	
 	/**
@@ -22,21 +22,31 @@ public class Ocena {
 		case ZMAGA_CRNI:
 			return (jaz == Igralec.CRNI ? ZMAGA : ZGUBA);
 		case NA_POTEZI_BELI:
-		case NA_POTEZI_CRNI:
-			//stevilo sosedov in globina crnega igralca
-			int stCrniSos = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();
-			int globinaCrni = KvaziGlobina.ocenaGlobine(igra, igra.getPolozajCrni());
-			
 			//stevilo sosedov in globina belega igralca
 			int stBeliSos = igra.moznePoteze(igra.getPolozajBeli().getX(), igra.getPolozajBeli().getY()).size();
-			int globinaBeli =KvaziGlobina.ocenaGlobine(igra, igra.getPolozajBeli());
+			//stevilo sosedov in globina crnega igralca
+			int stCrniSos = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();	
 			
 			//ocene igralcev 
-			int ocenaCrni = stCrniSos * globinaCrni - stBeliSos * globinaBeli;
-			int ocenaBeli = stBeliSos * globinaBeli - stCrniSos * globinaCrni;
+			int ocenaCrni = stCrniSos  - UTEZ * stBeliSos;
+			int ocenaBeli = stBeliSos  - UTEZ*stCrniSos;
 			
-			return (jaz == Igralec.CRNI? ocenaCrni : ocenaBeli);
 			
+			return (jaz == Igralec.CRNI? ocenaCrni: ocenaBeli);
+		case NA_POTEZI_CRNI:
+			//stevilo sosedov in globina belega igralca
+			int stBeliSos2 = igra.moznePoteze(igra.getPolozajBeli().getX(), igra.getPolozajBeli().getY()).size();
+			
+			//stevilo sosedov in globina crnega igralca
+			int stCrniSos2 = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();
+
+			
+			//ocene igralcev 
+			int ocenaCrni2 = stCrniSos2 - UTEZ * stBeliSos2;
+			int ocenaBeli2 = stBeliSos2 - UTEZ*stCrniSos2;
+			
+			return (jaz == Igralec.CRNI? ocenaCrni2: ocenaBeli2);
+
 		}
 		assert false;
 		return 0; 

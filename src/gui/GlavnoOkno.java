@@ -12,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+
 import logika.Igra;
 import logika.Igralec;
 import logika.Polje;
@@ -33,7 +34,10 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private double zmageCrni;
 	
 	//atribut globina, kjer uravnavamo težavnost
-	private int globina = 6;
+	private int globina = 4;
+	
+	//velikost igralne plošče
+	private int velikost = 7;
 	
 	
 	//izbire v menuju
@@ -45,6 +49,10 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private JMenuItem lahko;
 	private JMenuItem tezko;
 	private JMenuItem skrajnoTezko;
+	
+	private JMenuItem pravila = new JMenuItem("Pravila igre");
+	private JMenuItem izhod = new JMenuItem("Izhod");
+	
 	
 	
 	
@@ -67,8 +75,6 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		JMenu tezavnost = new JMenu("Težavnost igre");
 		nastavitve.add(tezavnost);
 		
-		
-
 		igraClovekRacunalnik = new JMenuItem("Človek - računalnik");
 		igra_menu.add(igraClovekRacunalnik);
 		igraClovekRacunalnik.addActionListener(this);
@@ -96,7 +102,14 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		skrajnoTezko = new JMenuItem("Skrajno težko");
 		tezavnost.add(skrajnoTezko);
 		skrajnoTezko.addActionListener(this);
-					
+		
+		pravila = new JMenuItem("Pravila igre");
+		menu_bar.add(pravila);
+		pravila.addActionListener(this);
+		
+		izhod = new JMenuItem("Izhod");
+		menu_bar.add(izhod);
+		izhod.addActionListener(this);
 		
 		// igralno polje
 		polje = new IgralnoPolje(this);
@@ -182,10 +195,10 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		    this.setGlobina(1);
 		    
 		}else if (e.getSource() == tezko) {
-		    this.setGlobina(6);
+		    this.setGlobina(8);
 		    
 		}else if (e.getSource() == skrajnoTezko) {
-		    this.setGlobina(10);
+		    this.setGlobina(16);
 		    
 		}
 		
@@ -201,11 +214,9 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 			case NA_POTEZI_CRNI: status.setText("Na potezi je črni.");break;
 			case ZMAGA_BELI: 
 				status.setText("Zmagal je beli.");
-				setZmageBeli(getZmageBeli() + 1);
 				break;
 			case ZMAGA_CRNI: 
 				status.setText("Zmagal je črni.");
-				setZmageCrni(getZmageCrni() + 1);
 				break;
 			}
 		}
@@ -277,6 +288,18 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 
 	public void setZmageCrni(double zmageCrni) {
 		this.zmageCrni = zmageCrni;
+	}
+
+
+
+	public int getVelikost() {
+		return velikost;
+	}
+
+
+
+	public void setVelikost(int velikost) {
+		this.velikost = velikost;
 	}
 
 }
