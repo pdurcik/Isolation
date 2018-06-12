@@ -5,6 +5,7 @@ import logika.Poteza;
 
 public class Clovek extends Strateg{
 	private GlavnoOkno master;
+	@SuppressWarnings("unused")
 	private Igralec jaz;
 	
 	public Clovek(GlavnoOkno master, Igralec jaz) {

@@ -80,7 +80,7 @@ public class Minimax extends SwingWorker<Poteza, Object>{
 					Ocena.oceniPozicijo(jaz, igra));
 		}
 		
-		// Hranimo najboljšo do sedaj videno potezo in njeno oceno.
+		// Hranimo seznam do sedaj najboljših videnih potez
 		LinkedList<Poteza> najboljse = new LinkedList<Poteza>();
 		int ocenaNajboljse = 0;
 		

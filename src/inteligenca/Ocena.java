@@ -22,30 +22,18 @@ public class Ocena {
 		case ZMAGA_CRNI:
 			return (jaz == Igralec.CRNI ? ZMAGA : ZGUBA);
 		case NA_POTEZI_BELI:
-			//stevilo sosedov in globina belega igralca
-			int stBeliSos = igra.moznePoteze(igra.getPolozajBeli().getX(), igra.getPolozajBeli().getY()).size();
-			//stevilo sosedov in globina crnega igralca
-			int stCrniSos = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();	
-			
-			//ocene igralcev 
-			int ocenaCrni = stCrniSos  - UTEZ * stBeliSos;
-			int ocenaBeli = stBeliSos  - UTEZ*stCrniSos;
-			
-			
-			return (jaz == Igralec.CRNI? ocenaCrni: ocenaBeli);
 		case NA_POTEZI_CRNI:
 			//stevilo sosedov in globina belega igralca
-			int stBeliSos2 = igra.moznePoteze(igra.getPolozajBeli().getX(), igra.getPolozajBeli().getY()).size();
+			int stBeliSos = igra.moznePoteze(igra.getPolozajBeli().getX(), igra.getPolozajBeli().getY()).size();
 			
 			//stevilo sosedov in globina crnega igralca
-			int stCrniSos2 = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();
+			int stCrniSos = igra.moznePoteze(igra.getPolozajCrni().getX(), igra.getPolozajCrni().getY()).size();
 
-			
 			//ocene igralcev 
-			int ocenaCrni2 = stCrniSos2 - UTEZ * stBeliSos2;
-			int ocenaBeli2 = stBeliSos2 - UTEZ*stCrniSos2;
+			int ocenaCrni = stCrniSos - UTEZ * stBeliSos;
+			int ocenaBeli = stBeliSos - UTEZ*stCrniSos;
 			
-			return (jaz == Igralec.CRNI? ocenaCrni2: ocenaBeli2);
+			return (jaz == Igralec.CRNI? ocenaCrni: ocenaBeli);
 
 		}
 		assert false;

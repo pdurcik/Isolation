@@ -10,7 +10,7 @@ import logika.Poteza;
 public class KvaziGlobina {
 		
 	public static int ocenaGlobine(Igra igra, Polozaj polozaj) {
-		int globina = 1;
+		int globina = 0;
 		
 		List<Poteza> prvePoteze= igra.moznePoteze(polozaj.getX(), polozaj.getY());
 		LinkedList<Poteza> sosednePoteze = new LinkedList<Poteza>();
@@ -23,6 +23,7 @@ public class KvaziGlobina {
 		while (!prvePoteze.isEmpty()) {
 
 			for(Poteza poteza: prvePoteze) {
+				//v sosedne poteze shranimo vse mozzne poteze iz prvih potez
 				sosednePoteze.addAll(igra.moznePoteze(poteza.getX(), poteza.getY()));
 				//nastavimo ta polja na neaktivna
 				for(Poteza poteza2: sosednePoteze) {
@@ -36,7 +37,7 @@ public class KvaziGlobina {
 			globina ++;
 			
 		}
-		return globina - 1;
+		return globina;
 	}
 
 }

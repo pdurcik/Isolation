@@ -210,9 +210,9 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 			oknoPravil.setFont(new Font(status.getFont().getName(),
 				    status.getFont().getStyle(),
 				    14));
-			final int sirinaOkenca = 300;
-			final int visinaOkenca = 250;
-			oknoPravil.setPreferredSize(new Dimension(sirinaOkenca, visinaOkenca));
+			final int sirina = 300;
+			final int visina = 250;
+			oknoPravil.setPreferredSize(new Dimension(sirina, visina));
 			JLabel besedilo = new JLabel("<html>"
 					+ "<h2 style='padding: 8pt;'>Pravila igre Isolation </h2>"
 					+ "Isolation je igra z dvema igralcema, kjer igralca </br>"
@@ -227,7 +227,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 			
 			oknoPravil.setLocationRelativeTo(this);
-			oknoPravil.setLocation(oknoPravil.getX()-sirinaOkenca/2, oknoPravil.getY()-visinaOkenca/2);
+			oknoPravil.setLocation(oknoPravil.getX()-sirina/2, oknoPravil.getY()-visina/2);
 			
 			oknoPravil.pack();
 			oknoPravil.setVisible(true);

@@ -78,12 +78,13 @@ public class AlphaBeta  extends SwingWorker<Poteza, Object> {
 					Ocena.oceniPozicijo(jaz, igra));
 		}
 		
-		// Hranimo najboljšo do sedaj videno potezo in njeno oceno.
+		// Hranimo najboljše do sedaj videne poteze in njeihovo oceno.
 		
 		LinkedList<Poteza> najboljse = new LinkedList<Poteza>();
 		Poteza najboljsa = null;
 		
 		if (naPotezi == jaz) {
+			//maximiziramo, v je spodnja ocen aza maximum
 			int v = Ocena.ZGUBA;
 			for (Poteza p : igra.poteze()) {
 				// V kopiji igre odigramo potezo p
@@ -104,10 +105,13 @@ public class AlphaBeta  extends SwingWorker<Poteza, Object> {
 					break;
 				}
 			}
+			//ce je vec najboljsih potez izberemo nakkljucno
 			Random rand = new Random();
 			najboljsa = najboljse.get(rand.nextInt(najboljse.size()));
 			return new OcenjenaPoteza(najboljsa, v);
-		} else {
+		} else { 
+			//nasprotnik minimizira
+			//zgornja ocena za minimum
 			int v = Ocena.ZMAGA;
 			for (Poteza p : igra.poteze()) {
 				// V kopiji igre odigramo potezo p
@@ -128,6 +132,7 @@ public class AlphaBeta  extends SwingWorker<Poteza, Object> {
 					break;
 				}
 			}
+			//ponovno nakljucno izberemo izmed najboljsih potez
 			Random r = new Random();
 			najboljsa = najboljse.get(r.nextInt(najboljse.size()));
 			return new OcenjenaPoteza(najboljsa, v);

@@ -12,6 +12,7 @@ import logika.Igralec;
 import logika.Poteza;
 
 @SuppressWarnings("unused")
+//racunalnik, ki uporablja nakljucno inteligenco
 public class RacunalnikRandom extends Strateg {
 	private GlavnoOkno master;
 	private SwingWorker<Poteza,Object> mislec;
