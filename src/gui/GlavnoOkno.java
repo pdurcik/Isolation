@@ -68,12 +68,9 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 		
 		JMenu igra_menu = new JMenu("Igra");
 		menu_bar.add(igra_menu);
-		
-		JMenu nastavitve = new JMenu("Nastavitve igre");
-		menu_bar.add(nastavitve);
-		
+				
 		JMenu tezavnost = new JMenu("Težavnost igre");
-		nastavitve.add(tezavnost);
+		menu_bar.add(tezavnost);
 		
 		igraClovekRacunalnik = new JMenuItem("Človek - računalnik");
 		igra_menu.add(igraClovekRacunalnik);
