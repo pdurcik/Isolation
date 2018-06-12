@@ -6,6 +6,8 @@ Avtorja: Primož Durcik in Jan Lampič
 
 Začetna igra je nastavljena na igro med človekom (beli) in računalnikom (črni).
 
-Izbiramo lahko med več težavnostmi. Željeno težavnost izberemo tako, da jo izberemo v zavihku "Nastavitve igre" in nato izberemo željeno obliko igre (npr. "Računalnik - človek").
+Izbiramo lahko med več težavnostmi. Željeno težavnost izberemo tako, da jo izberemo v zavihku "Težavnost igre" in nato izberemo željeno obliko igre (npr. "Računalnik - človek").
+
+Primer odigrane igre:
 
 ![Vizualicajia igre](vizualizacija.gif)
