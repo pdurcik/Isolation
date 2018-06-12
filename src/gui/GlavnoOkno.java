@@ -30,12 +30,7 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	private Igra igra;	
 	private Strateg strategBELI;//strateg, ki premika belega konja	
 	private Strateg strategCRNI;
-	
-	
-	//rezultati (stevilo zmag posameznega igralca)
-	private double zmageBeli;
-	private double zmageCrni;
-	
+
 	//atribut globina, kjer uravnavamo težavnost
 	private int globina = 8;
 	
@@ -286,41 +281,12 @@ public class GlavnoOkno extends JFrame implements ActionListener{
 	}
 
 
-
 	public int getGlobina() {
 		return globina;
 	}
 
-
-
+	
 	public void setGlobina(int globina) {
 		this.globina = globina;
 	}
-
-
-
-	public double getZmageBeli() {
-		return zmageBeli;
-	}
-
-
-
-	public void setZmageBeli(double d) {
-		this.zmageBeli = d;
-	}
-
-
-
-	public double getZmageCrni() {
-		return zmageCrni;
-	}
-
-
-
-	public void setZmageCrni(double zmageCrni) {
-		this.zmageCrni = zmageCrni;
-	}
-
-
-
 }
