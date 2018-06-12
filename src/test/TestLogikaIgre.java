@@ -25,7 +25,7 @@ public class TestLogikaIgre extends TestCase {
 		//assertEquals(0, igra.polozajIgralca().getX());
 		// Sedaj je na potezi CRNI in imamo aktivno polje manj
 		assertEquals(Stanje.NA_POTEZI_CRNI, igra.stanje());
-		//Po eni odigrani potezi je �t. aktivnih polj N*N-3
+		//Po eni odigrani potezi je st. aktivnih polj N*N-3
 		assertEquals(igra.steviloAktivnih(), igra.N*igra.N - 3);
 		
 	}
